@@ -1,0 +1,35 @@
+[package]
+name = "spidery"
+author= "Khulnasoft.com"
+version = "1.0.0"
+edition = "2021"
+license = "MIT"
+homepage = "https://www.spidery.khulnasoft.com/"
+repository ="https://github.com/khulnasoft/spidery"
+description = "Rust SDK for Spidery API."
+authors = ["Md Sulaiman <dev.sulaiman@icloud.com>"]
+
+[lib]
+path = "src/lib.rs"
+name = "spidery"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[dependencies]
+reqwest = { version = "^0.12", features = ["json", "blocking"] }
+serde = { version = "^1.0", features = ["derive"] }
+serde_json = "^1.0"
+serde_with = "^3.9"
+log = "^0.4"
+thiserror = "^1.0"
+uuid = { version = "^1.10", features = ["v4"] }
+tokio = { version = "^1", features = ["full"] }
+
+[dev-dependencies]
+clippy = "^0.0.302"
+rustfmt = "^0.10"
+assert_matches = "^1.5"
+dotenvy = "^0.15"
+tokio = { version = "1", features = ["full"] }
+
+[build-dependencies]
+tokio = { version = "1", features = ["full"] }
