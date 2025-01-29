@@ -1,0 +1,98 @@
+# Pick your baseUrl here:
+@baseUrl = http://localhost:3002
+# @baseUrl = https://api.spidery.khulnasoft.com
+
+### Scrape Website
+# @name scrape
+POST {{baseUrl}}/v1/scrape HTTP/1.1
+Authorization: Bearer {{$dotenv TEST_API_KEY}}
+content-type: application/json
+
+{
+  "url":"https://spidery.khulnasoft.com"
+}
+
+### Crawl Website
+# @name crawl
+POST {{baseUrl}}/v1/crawl HTTP/1.1
+Authorization: Bearer {{$dotenv TEST_API_KEY}}
+content-type: application/json
+
+{
+  "url": "https://spidery.khulnasoft.com"
+}
+
+### Check Crawl Status
+@crawlId = {{crawl.response.body.$.id}}
+# @name crawlStatus
+GET {{baseUrl}}/v1/crawl/{{crawlId}} HTTP/1.1
+Authorization: Bearer {{$dotenv TEST_API_KEY}}
+
+### Cancel Crawl
+@crawlId = {{crawl.response.body.$.id}}
+# @name cancelCrawl
+DELETE {{baseUrl}}/v1/crawl/{{crawlId}} HTTP/1.1
+Authorization: Bearer {{$dotenv TEST_API_KEY}}
+
+### Batch Scrape Websites
+# @name batchScrape
+POST {{baseUrl}}/v1/batch/scrape HTTP/1.1
+Authorization: Bearer {{$dotenv TEST_API_KEY}}
+content-type: application/json
+
+{
+  "urls": [
+    "spidery.khulnasoft.com",
+    "khulnasoft.com"
+  ]
+}
+
+### Check Batch Scrape Status
+@batchScrapeId = {{batchScrape.response.body.$.id}}
+# @name batchScrapeStatus
+GET {{baseUrl}}/v1/crawl/{{batchScrapeId}} HTTP/1.1
+Authorization: Bearer {{$dotenv TEST_API_KEY}}
+
+
+### Map Website
+# @name map
+POST {{baseUrl}}/v1/map HTTP/1.1
+Authorization: Bearer {{$dotenv TEST_API_KEY}}
+content-type: application/json
+
+{
+  "url": "spidery.khulnasoft.com",
+  "sitemapOnly": true
+}
+
+### Extract Spidery Title
+# @name extractSpidery
+POST {{baseUrl}}/v1/extract HTTP/1.1
+Authorization: Bearer {{$dotenv TEST_API_KEY}}
+content-type: application/json
+
+{
+  "urls": [
+    "https://spidery.khulnasoft.com/blog"
+  ],
+  "origin": "api-sdk",
+  "prompt": "Extract all the blog titles from the page, is multity entity = true",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "blog_titles": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "required": ["blog_titles"]
+  }
+}
+
+###
+@extractSpideryId = {{extractSpidery.response.body.$.id}}
+# @name extractSpideryStatus 
+GET {{baseUrl}}/v1/extract/{{extractSpideryId}} HTTP/1.1
+Authorization: Bearer {{$dotenv TEST_API_KEY}}

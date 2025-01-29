@@ -1,0 +1,15 @@
+LICENSE
+README.md
+pyproject.toml
+setup.py
+spidery/__init__.py
+spidery/spidery.py
+spidery/__tests__/e2e_withAuth/__init__.py
+spidery/__tests__/e2e_withAuth/test.py
+spidery/__tests__/v1/e2e_withAuth/__init__.py
+spidery/__tests__/v1/e2e_withAuth/test.py
+spidery_py.egg-info/PKG-INFO
+spidery_py.egg-info/SOURCES.txt
+spidery_py.egg-info/dependency_links.txt
+spidery_py.egg-info/requires.txt
+spidery_py.egg-info/top_level.txt

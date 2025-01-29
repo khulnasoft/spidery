@@ -1,0 +1,6 @@
+requests
+beautifulsoup4
+spidery
+pydantic
+python-dotenv
+spidery-py
