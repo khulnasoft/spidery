@@ -258,9 +258,7 @@ export async function sendNotificationWithCustomDays(
       return { success: false };
     }
 
-    for (const email of emails) {
-      await sendEmailNotification(email.email, notificationType);
-    }
+    await Promise.all(emails.map(email => sendEmailNotification(email.email, notificationType)));
 
     const { error: insertError } = await supabase_service
       .from("user_notifications")
