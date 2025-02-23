@@ -158,6 +158,7 @@ export enum NotificationType {
   RATE_LIMIT_REACHED = "rateLimitReached",
   AUTO_RECHARGE_SUCCESS = "autoRechargeSuccess",
   AUTO_RECHARGE_FAILED = "autoRechargeFailed",
+  AUTO_RECHARGE_FREQUENT = "autoRechargeFrequent",
 }
 
 export type ScrapeLog = {
