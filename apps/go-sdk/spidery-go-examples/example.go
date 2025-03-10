@@ -9,8 +9,9 @@ import (
 	"log"
 	"time"
 
-	"github.com/google/uuid"
 	"github.com/khulnasoft/spidery/apps/go-sdk/spidery-go"
+
+	"github.com/google/uuid"
 )
 
 func ptr[T any](v T) *T {
@@ -18,7 +19,7 @@ func ptr[T any](v T) *T {
 }
 
 func main() {
-	app, err := spidery.NewSpideryApp("fc-YOUR_API_KEY", "https://api.spidery.khulnasoft.com")
+	app, err := spidery.NewSpideryApp("fc-YOUR_API_KEY", "https://api-spidery.khulnasoft.com")
 	if err != nil {
 		log.Fatalf("Failed to create SpideryApp: %v", err)
 	}

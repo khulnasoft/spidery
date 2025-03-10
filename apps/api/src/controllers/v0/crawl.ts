@@ -44,14 +44,12 @@ export async function crawlController(req: Request, res: Response) {
 
     const { team_id, plan, chunk } = auth;
 
-    redisConnection
-      .sadd("teams_using_v0", team_id)
-      .catch((error) =>
-        logger.error("Failed to add team to teams_using_v0", {
-          error,
-          team_id,
-        }),
-      );
+    redisConnection.sadd("teams_using_v0", team_id).catch((error) =>
+      logger.error("Failed to add team to teams_using_v0", {
+        error,
+        team_id,
+      }),
+    );
 
     if (req.headers["x-idempotency-key"]) {
       const isIdempotencyValid = await validateIdempotencyKey(req);

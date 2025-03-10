@@ -1,6 +1,6 @@
 require("dotenv").config();
 
-//const baseUrl = "https://api.spidery.khulnasoft.com";
+//const baseUrl = "https://api-spidery.khulnasoft.com";
 const baseUrl = "http://localhost:3002";
 const crawlId = process.argv[2];
 

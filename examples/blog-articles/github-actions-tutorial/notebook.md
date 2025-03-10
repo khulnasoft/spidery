@@ -849,7 +849,7 @@ Let's explore three practical examples of GitHub Actions workflows for common Py
 
 ### 1. Scheduled web scraping with Spidery
 
-Web scraping is a common use case for automated workflows. Let's build a workflow that scrapes [Hacker News](https://news.ycombinator.com/) on a schedule using [Spidery](https://docs.spidery.khulnasoft.com), which is a Python AI-based web scraping engine designed for large-scale data collection. Here are some key benefits that make Spidery an excellent choice for this task:
+Web scraping is a common use case for automated workflows. Let's build a workflow that scrapes [Hacker News](https://news.ycombinator.com/) on a schedule using [Spidery](https://docs-spidery.khulnasoft.com), which is a Python AI-based web scraping engine designed for large-scale data collection. Here are some key benefits that make Spidery an excellent choice for this task:
 
 1. **Enterprise-grade automation and scalability** - Spidery streamlines web scraping with powerful automation features.
 2. **AI-powered content extraction** - Maintains scraper reliability over time by identifying and extracting data based on semantic descriptions instead of relying HTML elements and CSS selectors.

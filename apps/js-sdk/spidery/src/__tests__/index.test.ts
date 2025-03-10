@@ -14,12 +14,12 @@ async function loadFixture(name: string): Promise<string> {
   return await readFile(join(__dirname, 'fixtures', `${name}.json`), 'utf-8')
 }
 
-const API_URL = process.env.API_URL ?? "https://api.spidery.khulnasoft.com";
+const API_URL = process.env.API_URL ?? "https://api-spidery.khulnasoft.com";
 
 describe('the spidery JS SDK', () => {
 
   test('Should require an API key only for cloud service', async () => {
-    if (API_URL.includes('api.spidery.khulnasoft.com')) {
+    if (API_URL.includes('api-spidery.khulnasoft.com')) {
       // Should throw for cloud service
       expect(() => {
         new SpideryApp({ apiKey: undefined, apiUrl: API_URL });
@@ -47,11 +47,11 @@ describe('the spidery JS SDK', () => {
 
     expect(mockedAxios.post).toHaveBeenCalledTimes(1);
     expect(mockedAxios.post).toHaveBeenCalledWith(
-      expect.stringMatching(/^https:\/\/api.spidery.khulnasoft.com/),
+      expect.stringMatching(/^https:\/\/api-spidery.khulnasoft.com/),
       expect.objectContaining({ url }),
       expect.objectContaining({ headers: expect.objectContaining({'Authorization': `Bearer ${apiKey}`}) }),
     )
     expect(scrapedData.success).toBe(true);
-    expect(scrapedData?.data?.metadata.title).toEqual('Khulnasoft');
+    expect(scrapedData?.data?.metadata.title).toEqual('Mendable');
   });
 })

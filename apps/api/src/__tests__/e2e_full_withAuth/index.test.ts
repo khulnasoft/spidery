@@ -62,16 +62,6 @@ describe("E2E Tests for API Routes", () => {
       expect(response.body.error).toContain(BLOCKLISTED_URL_MESSAGE);
     });
 
-    // tested on rate limit test
-    // it.concurrent("should return a successful response with a valid preview token", async () => {
-    //   const response = await request(TEST_URL)
-    //     .post("/v0/scrape")
-    //     .set("Authorization", `Bearer this_is_just_a_preview_token`)
-    //     .set("Content-Type", "application/json")
-    //     .send({ url: "https://roastmywebsite.ai" });
-    //   expect(response.statusCode).toBe(200);
-    // }, 30000); // 30 seconds timeout
-
     it.concurrent(
       "should return a successful response with a valid API key",
       async () => {
@@ -508,7 +498,7 @@ describe("E2E Tests for API Routes", () => {
           .set("Authorization", `Bearer ${process.env.TEST_API_KEY}`)
           .set("Content-Type", "application/json")
           .set("x-idempotency-key", uniqueIdempotencyKey)
-          .send({ url: "https://docs.spidery.khulnasoft.com" });
+          .send({ url: "https://docs-spidery.khulnasoft.com" });
 
         expect(firstResponse.statusCode).toBe(200);
 
@@ -518,7 +508,7 @@ describe("E2E Tests for API Routes", () => {
           .set("Authorization", `Bearer ${process.env.TEST_API_KEY}`)
           .set("Content-Type", "application/json")
           .set("x-idempotency-key", uniqueIdempotencyKey)
-          .send({ url: "https://docs.spidery.khulnasoft.com" });
+          .send({ url: "https://docs-spidery.khulnasoft.com" });
 
         expect(secondResponse.statusCode).toBe(409);
         expect(secondResponse.body.error).toBe("Idempotency key already used");
@@ -576,7 +566,7 @@ describe("E2E Tests for API Routes", () => {
         expect(completedResponse.body.data[0]).toHaveProperty("content");
         expect(completedResponse.body.data[0]).toHaveProperty("markdown");
         expect(completedResponse.body.data[0]).toHaveProperty("metadata");
-        expect(completedResponse.body.data[0].content).toContain("Khulnasoft");
+        expect(completedResponse.body.data[0].content).toContain("Mendable");
         expect(completedResponse.body.data[0].metadata.pageStatusCode).toBe(
           200,
         );
@@ -673,7 +663,7 @@ describe("E2E Tests for API Routes", () => {
         expect(completedResponse.body.data[0]).toHaveProperty("content");
         expect(completedResponse.body.data[0]).toHaveProperty("markdown");
         expect(completedResponse.body.data[0]).toHaveProperty("metadata");
-        expect(completedResponse.body.data[0].content).toContain("Khulnasoft");
+        expect(completedResponse.body.data[0].content).toContain("Mendable");
         expect(completedResponse.body.data[0].metadata.pageStatusCode).toBe(
           200,
         );
@@ -922,7 +912,7 @@ describe("E2E Tests for API Routes", () => {
     //   expect(completedResponse.body.data[0]).toHaveProperty("content");
     //   expect(completedResponse.body.data[0]).toHaveProperty("markdown");
     //   expect(completedResponse.body.data[0]).toHaveProperty("metadata");
-    //   expect(completedResponse.body.data[0].content).toContain("Khulnasoft");
+    //   expect(completedResponse.body.data[0].content).toContain("Mendable");
     //   expect(completedResponse.body.data[0].content).not.toContain("main menu");
     // }, 60000); // 60 seconds
 
@@ -1032,7 +1022,7 @@ describe("E2E Tests for API Routes", () => {
           expect.arrayContaining([
             expect.objectContaining({
               url: expect.stringContaining(
-                "https://spidery.khulnasoft.com/?ref=khulnasoft+banner",
+                "https://spidery.khulnasoft.com/?ref=mendable+banner",
               ),
             }),
             expect.objectContaining({
@@ -1091,19 +1081,6 @@ describe("E2E Tests for API Routes", () => {
       },
       3000,
     );
-
-    // it.concurrent("should return a successful response with a valid API key for crawlWebsitePreview", async () => {
-    //   const response = await request(TEST_URL)
-    //     .post("/v0/crawlWebsitePreview")
-    //     .set("Authorization", `Bearer this_is_just_a_preview_token`)
-    //     .set("Content-Type", "application/json")
-    //     .send({ url: "https://spidery.khulnasoft.com" });
-    //   expect(response.statusCode).toBe(200);
-    //   expect(response.body).toHaveProperty("jobId");
-    //   expect(response.body.jobId).toMatch(
-    //     /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$/
-    //   );
-    // });
   });
 
   describe("POST /v0/search", () => {
@@ -1200,7 +1177,7 @@ describe("E2E Tests for API Routes", () => {
         expect(completedResponse.body.data[0]).toHaveProperty("content");
         expect(completedResponse.body.data[0]).toHaveProperty("markdown");
         expect(completedResponse.body.data[0]).toHaveProperty("metadata");
-        expect(completedResponse.body.data[0].content).toContain("Khulnasoft");
+        expect(completedResponse.body.data[0].content).toContain("Mendable");
         expect(completedResponse.body.data[0].metadata.pageStatusCode).toBe(
           200,
         );
@@ -1384,8 +1361,8 @@ describe("E2E Tests for API Routes", () => {
       expect(completedResponse.body.data[0]).toHaveProperty("markdown");
       expect(completedResponse.body.data[0]).toHaveProperty("metadata");
       expect(completedResponse.body.data[0]).toHaveProperty("html");
-      expect(completedResponse.body.data[0].content).toContain("Khulnasoft");
-      expect(completedResponse.body.data[0].markdown).toContain("Khulnasoft");
+      expect(completedResponse.body.data[0].content).toContain("Mendable");
+      expect(completedResponse.body.data[0].markdown).toContain("Mendable");
       expect(completedResponse.body.data[0].metadata.pageStatusCode).toBe(200);
       expect(completedResponse.body.data[0].metadata.pageError).toBeUndefined();
 
@@ -1728,7 +1705,7 @@ describe("E2E Tests for API Routes", () => {
         for (let i = 0; i < 5; i++) {
           const response = await request(TEST_URL)
             .post("/v0/scrape")
-            .set("Authorization", `Bearer this_is_just_a_preview_token`)
+            .set("Authorization", `Bearer ${process.env.PREVIEW_TOKEN}`)
             .set("Content-Type", "application/json")
             .send({ url: "https://www.scrapethissite.com" });
 
@@ -1736,7 +1713,7 @@ describe("E2E Tests for API Routes", () => {
         }
         const response = await request(TEST_URL)
           .post("/v0/scrape")
-          .set("Authorization", `Bearer this_is_just_a_preview_token`)
+          .set("Authorization", `Bearer ${process.env.PREVIEW_TOKEN}`)
           .set("Content-Type", "application/json")
           .send({ url: "https://www.scrapethissite.com" });
 

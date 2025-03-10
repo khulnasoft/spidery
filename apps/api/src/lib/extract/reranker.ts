@@ -5,7 +5,7 @@ import { logger } from "../logger";
 import { CohereClient } from "cohere-ai";
 import { extractConfig } from "./config";
 import { searchSimilarPages } from "./index/pinecone";
-import { generateOpenAICompletions } from "../../scraper/scrapeURL/transformers/llmExtract";
+import { generateCompletions } from "../../scraper/scrapeURL/transformers/llmExtract";
 import { buildRerankerUserPrompt } from "./build-prompts";
 import { buildRerankerSystemPrompt } from "./build-prompts";
 import { dumpToFile } from "./helpers/dump-to-file";
@@ -169,9 +169,7 @@ export type RerankerOptions = {
   urlTraces: URLTrace[];
 };
 
-export async function rerankLinksWithLLM(
-  options: RerankerOptions,
-): Promise<RerankerResult> {
+export async function rerankLinksWithLLM(options: RerankerOptions): Promise<RerankerResult> {
   const { links, searchQuery, urlTraces } = options;
   const chunkSize = 100;
   const chunks: MapDocument[][] = [];
@@ -196,11 +194,7 @@ export async function rerankLinksWithLLM(
           properties: {
             url: { type: "string" },
             relevanceScore: { type: "number" },
-            reason: {
-              type: "string",
-              description:
-                "The reason why you chose the score for this link given the intent.",
-            },
+            reason: { type: "string", description: "The reason why you chose the score for this link given the intent." },
           },
           required: ["url", "relevanceScore", "reason"],
         },
@@ -227,22 +221,21 @@ export async function rerankLinksWithLLM(
           });
 
           // dumpToFile(new Date().toISOString(),[buildRerankerSystemPrompt(), buildRerankerUserPrompt(searchQuery), schema, linksContent])
-          const completionPromise = generateOpenAICompletions(
-            logger.child({
+          const completionPromise = generateCompletions({
+            logger: logger.child({
               method: "rerankLinksWithLLM",
               chunk: chunkIndex + 1,
               retry,
             }),
-            {
+            options: {
               mode: "llm",
               systemPrompt: buildRerankerSystemPrompt(),
               prompt: buildRerankerUserPrompt(searchQuery),
               schema: schema,
             },
-            linksContent,
-            undefined,
-            true,
-          );
+            markdown: linksContent,
+            isExtractEndpoint: true
+          });
 
           const completion = await Promise.race([
             completionPromise,
@@ -290,13 +283,7 @@ export async function rerankLinksWithLLM(
     .map((result) => {
       const link = links.find((link) => link.url === result.url);
       if (link) {
-        return {
-          ...link,
-          relevanceScore: result.relevanceScore
-            ? parseFloat(result.relevanceScore)
-            : 0,
-          reason: result.reason,
-        };
+        return { ...link, relevanceScore: result.relevanceScore ? parseFloat(result.relevanceScore) : 0, reason: result.reason };
       }
       return undefined;
     })

@@ -82,14 +82,12 @@ export async function crawlStatusController(req: Request, res: Response) {
 
     const { team_id } = auth;
 
-    redisConnection
-      .sadd("teams_using_v0", team_id)
-      .catch((error) =>
-        logger.error("Failed to add team to teams_using_v0", {
-          error,
-          team_id,
-        }),
-      );
+    redisConnection.sadd("teams_using_v0", team_id).catch((error) =>
+      logger.error("Failed to add team to teams_using_v0", {
+        error,
+        team_id,
+      }),
+    );
 
     const sc = await getCrawl(req.params.jobId);
     if (!sc) {

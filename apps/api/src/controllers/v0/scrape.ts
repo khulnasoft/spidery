@@ -181,14 +181,12 @@ export async function scrapeController(req: Request, res: Response) {
 
     const { team_id, plan, chunk } = auth;
 
-    redisConnection
-      .sadd("teams_using_v0", team_id)
-      .catch((error) =>
-        logger.error("Failed to add team to teams_using_v0", {
-          error,
-          team_id,
-        }),
-      );
+    redisConnection.sadd("teams_using_v0", team_id).catch((error) =>
+      logger.error("Failed to add team to teams_using_v0", {
+        error,
+        team_id,
+      }),
+    );
 
     const crawlerOptions = req.body.crawlerOptions ?? {};
     const pageOptions = { ...defaultPageOptions, ...req.body.pageOptions };

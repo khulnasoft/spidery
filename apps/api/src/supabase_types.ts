@@ -38,7 +38,7 @@ export interface Database {
           {
             foreignKeyName: "api_keys_project_id_fkey";
             columns: ["project_id"];
-            referencedRelation: "khulnasoft_project";
+            referencedRelation: "mendable_project";
             referencedColumns: ["id"];
           },
         ];
@@ -124,7 +124,7 @@ export interface Database {
           {
             foreignKeyName: "conversation_project_id_fkey";
             columns: ["project_id"];
-            referencedRelation: "khulnasoft_project";
+            referencedRelation: "mendable_project";
             referencedColumns: ["id"];
           },
         ];
@@ -234,7 +234,7 @@ export interface Database {
           {
             foreignKeyName: "data_project_id_fkey";
             columns: ["project_id"];
-            referencedRelation: "khulnasoft_project";
+            referencedRelation: "mendable_project";
             referencedColumns: ["id"];
           },
         ];
@@ -341,7 +341,7 @@ export interface Database {
         };
         Relationships: [];
       };
-      khulnasoft_project: {
+      mendable_project: {
         Row: {
           company_id: number | null;
           created_at: string | null;
@@ -386,7 +386,7 @@ export interface Database {
         };
         Relationships: [
           {
-            foreignKeyName: "khulnasoft_project_company_id_fkey";
+            foreignKeyName: "mendable_project_company_id_fkey";
             columns: ["company_id"];
             referencedRelation: "company";
             referencedColumns: ["company_id"];
@@ -477,7 +477,7 @@ export interface Database {
           {
             foreignKeyName: "model_configuration_project_id_fkey";
             columns: ["project_id"];
-            referencedRelation: "khulnasoft_project";
+            referencedRelation: "mendable_project";
             referencedColumns: ["id"];
           },
         ];
@@ -505,7 +505,7 @@ export interface Database {
           {
             foreignKeyName: "monthly_message_counts_project_id_fkey";
             columns: ["project_id"];
-            referencedRelation: "khulnasoft_project";
+            referencedRelation: "mendable_project";
             referencedColumns: ["id"];
           },
         ];
@@ -773,7 +773,7 @@ export interface Database {
           {
             foreignKeyName: "suggested_questions_project_id_fkey";
             columns: ["project_id"];
-            referencedRelation: "khulnasoft_project";
+            referencedRelation: "mendable_project";
             referencedColumns: ["id"];
           },
         ];
@@ -813,7 +813,7 @@ export interface Database {
           {
             foreignKeyName: "user_notifications_project_id_fkey";
             columns: ["project_id"];
-            referencedRelation: "khulnasoft_project";
+            referencedRelation: "mendable_project";
             referencedColumns: ["id"];
           },
           {
@@ -932,7 +932,7 @@ export interface Database {
           {
             foreignKeyName: "z_testcomp_92511_project_id_fkey";
             columns: ["project_id"];
-            referencedRelation: "khulnasoft_project";
+            referencedRelation: "mendable_project";
             referencedColumns: ["id"];
           },
         ];
@@ -975,7 +975,7 @@ export interface Database {
         };
         Returns: undefined;
       };
-      create_khulnasoft_project_3: {
+      create_mendable_project_3: {
         Args: {
           _company_name: string;
           _pricing_plan_id: number;

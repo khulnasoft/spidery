@@ -9,7 +9,7 @@ import { logger as _logger } from "../logger";
 import { processUrl } from "./url-processor";
 import { scrapeDocument } from "./document-scraper";
 import {
-  generateOpenAICompletions,
+  generateCompletions,
   generateSchemaFromPrompt,
 } from "../../scraper/scrapeURL/transformers/llmExtract";
 import { billTeam } from "../../services/billing/credit_billing";
@@ -33,15 +33,19 @@ import { checkShouldExtract } from "./completions/checkShouldExtract";
 import { batchExtractPromise } from "./completions/batchExtract";
 import { singleAnswerCompletion } from "./completions/singleAnswer";
 import { SourceTracker } from "./helpers/source-tracker";
+import { getCachedDocs, saveCachedDocs } from "./helpers/cached-docs";
+import { normalizeUrl } from "../canonical-url";
 
 interface ExtractServiceOptions {
   request: ExtractRequest;
   teamId: string;
   plan: PlanType;
   subId?: string;
+  cacheMode?: "load" | "save" | "direct";
+  cacheKey?: string;
 }
 
-interface ExtractResult {
+export interface ExtractResult {
   success: boolean;
   data?: any;
   extractId: string;
@@ -81,6 +85,26 @@ export async function performExtraction(
     method: "performExtraction",
     extractId,
   });
+
+  if (
+    request.__experimental_cacheMode == "load" &&
+    request.__experimental_cacheKey
+  ) {
+    logger.debug("Loading cached docs...");
+    try {
+      const cache = await getCachedDocs(
+        request.urls,
+        request.__experimental_cacheKey,
+      );
+      for (const doc of cache) {
+        if (doc.metadata.url) {
+          docsMap.set(normalizeUrl(doc.metadata.url), doc);
+        }
+      }
+    } catch (error) {
+      logger.error("Error loading cached docs", { error });
+    }
+  }
 
   // Token tracking
   let tokenUsage: TokenUsage[] = [];
@@ -253,8 +277,9 @@ export async function performExtraction(
 
     logger.debug("Starting multi-entity scrape...");
     let startScrape = Date.now();
+
     const scrapePromises = links.map((url) => {
-      if (!docsMap.has(url)) {
+      if (!docsMap.has(normalizeUrl(url))) {
         return scrapeDocument(
           {
             url,
@@ -271,12 +296,14 @@ export async function performExtraction(
             isMultiEntity: true,
           }),
           {
+            ...request.scrapeOptions,
+
             // Needs to be true for multi-entity to work properly
             onlyMainContent: true,
           },
         );
       }
-      return docsMap.get(url);
+      return docsMap.get(normalizeUrl(url));
     });
 
     let multyEntityDocs = (await Promise.all(scrapePromises)).filter(
@@ -305,7 +332,7 @@ export async function performExtraction(
 
     for (const doc of multyEntityDocs) {
       if (doc?.metadata?.url) {
-        docsMap.set(doc.metadata.url, doc);
+        docsMap.set(normalizeUrl(doc.metadata.url), doc);
       }
     }
 
@@ -392,7 +419,7 @@ export async function performExtraction(
           const multiEntityCompletion = (await Promise.race([
             completionPromise,
             timeoutPromise,
-          ])) as Awaited<ReturnType<typeof generateOpenAICompletions>>;
+          ])) as Awaited<ReturnType<typeof generateCompletions>>;
 
           // Track multi-entity extraction tokens
           if (multiEntityCompletion) {
@@ -530,7 +557,7 @@ export async function performExtraction(
       ],
     });
     const scrapePromises = links.map((url) => {
-      if (!docsMap.has(url)) {
+      if (!docsMap.has(normalizeUrl(url))) {
         return scrapeDocument(
           {
             url,
@@ -546,9 +573,10 @@ export async function performExtraction(
             url,
             isMultiEntity: false,
           }),
+          request.scrapeOptions,
         );
       }
-      return docsMap.get(url);
+      return docsMap.get(normalizeUrl(url));
     });
 
     try {
@@ -556,7 +584,7 @@ export async function performExtraction(
 
       for (const doc of results) {
         if (doc?.metadata?.url) {
-          docsMap.set(doc.metadata.url, doc);
+          docsMap.set(normalizeUrl(doc.metadata.url), doc);
         }
       }
       logger.debug("Updated docsMap.", { docsMapSize: docsMap.size }); // useful for error probing
@@ -677,7 +705,7 @@ export async function performExtraction(
   // }
   // // Deduplicate and validate final result against schema
   // if (reqSchema && finalResult && finalResult.length <= extractConfig.DEDUPLICATION.MAX_TOKENS) {
-  //   const schemaValidation = await generateOpenAICompletions(
+  //   const schemaValidation = await generateCompletions(
   //     logger.child({ method: "extractService/validateAndDeduplicate" }),
   //     {
   //       mode: "llm",
@@ -762,6 +790,21 @@ export async function performExtraction(
   });
 
   logger.debug("Done!");
+
+  if (
+    request.__experimental_cacheMode == "save" &&
+    request.__experimental_cacheKey
+  ) {
+    logger.debug("Saving cached docs...");
+    try {
+      await saveCachedDocs(
+        [...docsMap.values()],
+        request.__experimental_cacheKey,
+      );
+    } catch (error) {
+      logger.error("Error saving cached docs", { error });
+    }
+  }
 
   return {
     success: true,

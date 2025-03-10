@@ -19,7 +19,7 @@ import { ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
 
 //! Hardcoded values (not recommended for production)
 //! Highly recommended to move all Spidery API calls to the backend (e.g. Next.js API route)
-const SPIDERY_API_URL = "https://api.spidery.khulnasoft.com"; // Replace with your actual API URL whether it is local or using Spidery Cloud
+const SPIDERY_API_URL = "https://api-spidery.khulnasoft.com"; // Replace with your actual API URL whether it is local or using Spidery Cloud
 const SPIDERY_API_KEY = "fc-YOUR_API_KEY"; // Replace with your actual API key
 
 interface FormData {
@@ -345,7 +345,7 @@ export default function SpideryComponent() {
             Use this component to quickly give your users the ability to connect
             their AI apps to web data with Spidery. Learn more on the{" "}
             <a
-              href="https://docs.spidery.khulnasoft.com/"
+              href="https://docs-spidery.khulnasoft.com/"
               className="text-sm text-blue-500"
             >
               Spidery docs!

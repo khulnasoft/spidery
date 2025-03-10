@@ -26,6 +26,7 @@ class RustHTMLTransformer {
   private _extractMetadata: KoffiFunction;
   private _transformHtml: KoffiFunction;
   private _freeString: KoffiFunction;
+  private _getInnerJSON: KoffiFunction;
 
   private constructor() {
     const lib = koffi.load(rustExecutablePath);
@@ -43,6 +44,9 @@ class RustHTMLTransformer {
       "string",
     ]);
     this._transformHtml = lib.func("transform_html", freedResultString, [
+      "string",
+    ]);
+    this._getInnerJSON = lib.func("get_inner_json", freedResultString, [
       "string",
     ]);
   }
@@ -101,6 +105,22 @@ class RustHTMLTransformer {
       );
     });
   }
+
+  public async getInnerJSON(html: string): Promise<string> {
+    return new Promise<string>((resolve, reject) => {
+      this._getInnerJSON.async(html, (err: Error, res: string) => {
+        if (err) {
+          reject(err);
+        } else {
+          if (res === "RUSTFC:ERROR") {
+            reject(new Error("Something went wrong on the Rust side."));
+          } else {
+            resolve(res);
+          }
+        }
+      });
+    });
+  }
 }
 
 export async function extractLinks(
@@ -130,4 +150,9 @@ export async function transformHtml(
 ): Promise<string> {
   const converter = await RustHTMLTransformer.getInstance();
   return await converter.transformHtml(opts);
+}
+
+export async function getInnerJSON(html: string): Promise<string> {
+  const converter = await RustHTMLTransformer.getInstance();
+  return await converter.getInnerJSON(html);
 }

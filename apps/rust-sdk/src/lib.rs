@@ -19,7 +19,7 @@ pub struct SpideryApp {
 }
 
 pub(crate) const API_VERSION: &str = "/v1";
-const CLOUD_API_URL: &str = "https://api.spidery.khulnasoft.com";
+const CLOUD_API_URL: &str = "https://api-spidery.khulnasoft.com";
 
 impl SpideryApp {
     pub fn new(api_key: impl AsRef<str>) -> Result<Self, SpideryError> {

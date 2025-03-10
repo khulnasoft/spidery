@@ -58,7 +58,7 @@ setup(
     ],
     keywords="SDK API spidery",
     project_urls={
-        "Documentation": "https://docs.spidery.khulnasoft.com",
+        "Documentation": "https://docs-spidery.khulnasoft.com",
         "Source": "https://github.com/khulnasoft/spidery",
         "Tracker": "https://github.com/khulnasoft/spidery/issues",
     },

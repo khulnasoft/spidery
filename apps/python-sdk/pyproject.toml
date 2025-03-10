@@ -15,15 +15,14 @@ dependencies = [
     "nest-asyncio",
     "pydantic>=2.10.3",
 ]
-authors = [{name = "Khulnasoft.com",email = "nick@khulnasoft.com"}]
-maintainers = [{name = "Khulnasoft.com",email = "nick@khulnasoft.com"}]
-license = {text = "GNU Affero General Public License v3 (AGPLv3)"}
+authors = [{name = "Md Sulaiman",email = "dev.sulaiman@icloud.com"}]
+license = {text = "MIT License"}
 
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Environment :: Web Environment",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "License :: OSI Approved :: MIT License",
     "Natural Language :: English",
     "Operating System :: OS Independent",
     "Programming Language :: Python",
@@ -44,7 +43,7 @@ classifiers = [
 keywords = ["SDK", "API", "spidery"]
 
 [project.urls]
-"Documentation" = "https://docs.spidery.khulnasoft.com"
+"Documentation" = "https://docs-spidery.khulnasoft.com"
 "Source" = "https://github.com/khulnasoft/spidery"
 "Tracker" = "https://github.com/khulnasoft/spidery/issues"
 

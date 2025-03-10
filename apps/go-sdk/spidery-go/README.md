@@ -7,7 +7,7 @@ The Spidery Go SDK is a library that allows you to easily scrape and crawl websi
 To install the Spidery Go SDK, you can
 
 ```bash
-go get github.com/khulnasoft/spidery/apps/go-sdk/spidery-go
+go get khulnasoft/spidery/apps/go-sdk/spidery-go
 ```
 
 ## Usage
@@ -23,7 +23,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/khulnasoft/spidery/apps/go-sdk/spidery-go"
+	"khulnasoft/spidery/apps/go-sdk/spidery-go"
 )
 
 func main() {

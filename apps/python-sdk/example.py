@@ -13,7 +13,7 @@ print(scrape_result['markdown'])
 
 
 # Test batch scrape
-urls = ['https://example.com', 'https://docs.spidery.khulnasoft.com']
+urls = ['https://example.com', 'https://docs-spidery.khulnasoft.com']
 batch_scrape_params = {
     'formats': ['markdown', 'html'],
 }

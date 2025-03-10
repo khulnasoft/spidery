@@ -15,7 +15,7 @@ Traditional web scraping offers unique challenges. Relevant information is often
 
 Even after successfully scraping, the content requires specific formatting to be useful for downstream processes like data engineering or training AI and machine learning models.
 
-Spidery addresses these challenges by providing a specialized scraping solution. Its [`/scrape` endpoint](https://docs.spidery.khulnasoft.com/features/scrape) offers features like JavaScript rendering, automatic content extraction, bypassing blockers and flexible output formats that make it easier to collect high-quality information and training data at scale.
+Spidery addresses these challenges by providing a specialized scraping solution. Its [`/scrape` endpoint](https://docs-spidery.khulnasoft.com/features/scrape) offers features like JavaScript rendering, automatic content extraction, bypassing blockers and flexible output formats that make it easier to collect high-quality information and training data at scale.
 
 In this guide, we'll explore how to effectively use Spidery's `/scrape` endpoint to extract structured data from static and dynamic websites. We'll start with basic scraping setup and then dive into a real-world example of scraping weather data from weather.com, demonstrating how to handle JavaScript-based interactions, extract structured data using schemas, and capture screenshots during the scraping process.
 
@@ -686,7 +686,7 @@ batch_scrape_job
 ```python
     {'success': True,
      'id': '77a94b62-c676-4db2-b61b-4681e99f4704',
-     'url': 'https://api.spidery.khulnasoft.com/v1/batch/scrape/77a94b62-c676-4db2-b61b-4681e99f4704'}
+     'url': 'https://api-spidery.khulnasoft.com/v1/batch/scrape/77a94b62-c676-4db2-b61b-4681e99f4704'}
 ```
 
 The response contains an ID belonging the background task that was initiated to process the URLs under the hood.

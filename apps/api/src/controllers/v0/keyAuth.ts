@@ -13,14 +13,12 @@ export const keyAuthController = async (req: Request, res: Response) => {
       return res.status(auth.status).json({ error: auth.error });
     }
 
-    redisConnection
-      .sadd("teams_using_v0", auth.team_id)
-      .catch((error) =>
-        logger.error("Failed to add team to teams_using_v0", {
-          error,
-          team_id: auth.team_id,
-        }),
-      );
+    redisConnection.sadd("teams_using_v0", auth.team_id).catch((error) =>
+      logger.error("Failed to add team to teams_using_v0", {
+        error,
+        team_id: auth.team_id,
+      }),
+    );
 
     // if success, return success: true
     return res.status(200).json({ success: true });

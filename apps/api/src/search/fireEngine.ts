@@ -16,6 +16,7 @@ export async function fireEngineMap(
     numResults: number;
     page?: number;
   },
+  abort?: AbortSignal,
 ): Promise<SearchResult[]> {
   try {
     let data = JSON.stringify({
@@ -29,7 +30,7 @@ export async function fireEngineMap(
     });
 
     if (!process.env.FIRE_ENGINE_BETA_URL) {
-      console.warn(
+      logger.warn(
         "(v1/map Beta) Results might differ from cloud offering currently.",
       );
       return [];
@@ -42,6 +43,7 @@ export async function fireEngineMap(
         "X-Disable-Cache": "true",
       },
       body: data,
+      signal: abort,
     });
 
     if (response.ok) {

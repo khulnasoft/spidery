@@ -104,7 +104,7 @@ def extract_company_info(urls, prompt, company, api_key):
     
     try:
         response = requests.post(
-            "https://api.spidery.khulnasoft.com/v1/extract",
+            "https://api-spidery.khulnasoft.com/v1/extract",
             headers=headers,
             json=payload
         )

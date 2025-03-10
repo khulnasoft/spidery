@@ -9,17 +9,17 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
-    "@khulnasoft/spidery-js": "^1.15.7",
     "axios": "^1.6.8",
-    "spidery": "./spidery",
+    "spidery": "./spidery/",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5",
     "uuid": "^10.0.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "tsx": "^4.9.3"
+    "tsx": "^4.9.3",
+    "@khulnasoft/spidery-js": "./spidery/"
   }
 }

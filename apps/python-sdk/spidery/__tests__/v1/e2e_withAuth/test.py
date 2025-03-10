@@ -20,7 +20,7 @@ spec.loader.exec_module(spidery)
 SpideryApp = spidery.SpideryApp
 
 def test_no_api_key():
-    if 'api.spidery.khulnasoft.com' in API_URL:
+    if 'api-spidery.khulnasoft.com' in API_URL:
         with pytest.raises(Exception) as excinfo:
             invalid_app = SpideryApp(api_url=API_URL)
         assert "No API key provided" in str(excinfo.value)
@@ -30,7 +30,7 @@ def test_no_api_key():
         assert app is not None
 
 def test_scrape_url_invalid_api_key():
-    if 'api.spidery.khulnasoft.com' in API_URL:
+    if 'api-spidery.khulnasoft.com' in API_URL:
         invalid_app = SpideryApp(api_url=API_URL, api_key="invalid_api_key")
         with pytest.raises(Exception) as excinfo:
             invalid_app.scrape_url('https://spidery.khulnasoft.com')
@@ -49,7 +49,7 @@ def test_scrape_url_invalid_api_key():
 #     assert "URL is blocked. Spidery currently does not support social media scraping due to policy restrictions." in str(excinfo.value)
 
 def test_successful_response_with_valid_preview_token():
-    app = SpideryApp(api_url=API_URL, api_key="this_is_just_a_preview_token")
+    app = SpideryApp(api_url=API_URL, api_key=os.getenv('PREVIEW_TOKEN'))
     response = app.scrape_url('https://roastmywebsite.ai')
     assert response is not None
     assert "_Roast_" in response['markdown']
@@ -142,7 +142,7 @@ def test_successful_response_for_valid_scrape_with_pdf_file_without_explicit_ext
     assert 'We present spectrophotometric observations of the Broad Line Radio Galaxy' in response['markdown']
 
 def test_crawl_url_invalid_api_key():
-    if 'api.spidery.khulnasoft.com' in API_URL:
+    if 'api-spidery.khulnasoft.com' in API_URL:
         invalid_app = SpideryApp(api_url=API_URL, api_key="invalid_api_key")
         with pytest.raises(Exception) as excinfo:
             invalid_app.crawl_url('https://spidery.khulnasoft.com')
@@ -308,7 +308,7 @@ def test_check_crawl_status_e2e():
     assert 'error' not in status_response['data'][0]['metadata']
 
 def test_invalid_api_key_on_map():
-    if 'api.spidery.khulnasoft.com' in API_URL:
+    if 'api-spidery.khulnasoft.com' in API_URL:
         invalid_app = SpideryApp(api_key="invalid_api_key", api_url=API_URL)
         with pytest.raises(Exception) as excinfo:
             invalid_app.map_url('https://roastmywebsite.ai')
@@ -327,7 +327,7 @@ def test_invalid_api_key_on_map():
 #     assert "URL is blocked. Spidery currently does not support social media scraping due to policy restrictions." in str(excinfo.value)
 
 def test_successful_response_with_valid_preview_token_on_map():
-    app = SpideryApp(api_key="this_is_just_a_preview_token", api_url=API_URL)
+    app = SpideryApp(api_key=os.getenv('PREVIEW_TOKEN'), api_url=API_URL)
     response = app.map_url('https://roastmywebsite.ai')
     assert response is not None
     assert len(response) > 0

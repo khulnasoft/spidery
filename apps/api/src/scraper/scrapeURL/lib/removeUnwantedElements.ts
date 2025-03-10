@@ -1,6 +1,6 @@
 // TODO: refactor
 
-import { AnyNode, Cheerio, load } from "cheerio"; // rustified
+import cheerio from "cheerio";
 import { ScrapeOptions } from "../../../controllers/v1/types";
 import { transformHtml } from "../../../lib/html-transformer";
 import { logger } from "../../../lib/logger";
@@ -60,26 +60,18 @@ export const htmlTransform = async (
     return await transformHtml({
       html,
       url,
-      include_tags: (scrapeOptions.includeTags ?? [])
-        .map((x) => x.trim())
-        .filter((x) => x.length !== 0),
-      exclude_tags: (scrapeOptions.excludeTags ?? [])
-        .map((x) => x.trim())
-        .filter((x) => x.length !== 0),
+      include_tags: (scrapeOptions.includeTags ?? []).map(x => x.trim()).filter((x) => x.length !== 0),
+      exclude_tags: (scrapeOptions.excludeTags ?? []).map(x => x.trim()).filter((x) => x.length !== 0),
       only_main_content: scrapeOptions.onlyMainContent,
-    });
+    })
   } catch (error) {
-    logger.error(
-      "Failed to call html-transformer! Falling back to cheerio...",
-      {
+    logger.error("Failed to call html-transformer! Falling back to cheerio...", {
         error,
-        module: "scrapeURL",
-        method: "extractLinks",
-      },
-    );
+        module: "scrapeURL", method: "extractLinks"
+      });
   }
 
-  let soup = load(html);
+  let soup = cheerio.load(html);
 
   // remove unwanted elements
   if (
@@ -87,14 +79,14 @@ export const htmlTransform = async (
     scrapeOptions.includeTags.filter((x) => x.trim().length !== 0).length > 0
   ) {
     // Create a new root element to hold the tags to keep
-    const newRoot = load("<div></div>")("div");
+    const newRoot = cheerio.load("<div></div>")("div");
     scrapeOptions.includeTags.forEach((tag) => {
       soup(tag).each((_, element) => {
         newRoot.append(soup(element).clone());
       });
     });
 
-    soup = load(newRoot.html() ?? "");
+    soup = cheerio.load(newRoot.html() ?? "");
   }
 
   soup("script, style, noscript, meta, head").remove();
@@ -104,7 +96,7 @@ export const htmlTransform = async (
     scrapeOptions.excludeTags.filter((x) => x.trim().length !== 0).length > 0
   ) {
     scrapeOptions.excludeTags.forEach((tag) => {
-      let elementsToRemove: Cheerio<AnyNode>;
+      let elementsToRemove;
       if (tag.startsWith("*") && tag.endsWith("*")) {
         let classMatch = false;
 

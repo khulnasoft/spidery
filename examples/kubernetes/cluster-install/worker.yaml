@@ -19,8 +19,11 @@ spec:
           image: ghcr.io/winkk-dev/spidery:latest
           imagePullPolicy: Always
           args: [ "pnpm", "run", "workers" ]
+          env:
+            - name: FLY_PROCESS_GROUP
+              value: "worker"
           envFrom:
             - configMapRef:
                 name: spidery-config
-          #- secretRef:
-          #    name: spidery-secret
+            - secretRef:
+                name: spidery-secret

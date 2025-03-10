@@ -47,7 +47,7 @@ describe("E2E Tests for Map API Routes", () => {
       expect(response.body).toHaveProperty("links");
       expect(response.body.links.length).toBeGreaterThan(0);
       expect(response.body.links[response.body.links.length - 1]).toContain(
-        "docs.spidery.khulnasoft.com",
+        "docs-spidery.khulnasoft.com",
       );
     },
     60000,
@@ -70,7 +70,7 @@ describe("E2E Tests for Map API Routes", () => {
       expect(response.body).toHaveProperty("links");
       expect(response.body.links.length).toBeGreaterThan(0);
       expect(response.body.links[response.body.links.length - 1]).not.toContain(
-        "docs.spidery.khulnasoft.com",
+        "docs-spidery.khulnasoft.com",
       );
     },
     60000,

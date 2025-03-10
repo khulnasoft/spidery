@@ -12,7 +12,7 @@
   },
   "servers": [
     {
-      "url": "https://api.spidery.khulnasoft.com/v0"
+      "url": "https://api-spidery.khulnasoft.com/v0"
     }
   ],
   "paths": {

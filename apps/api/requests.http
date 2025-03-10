@@ -1,6 +1,6 @@
 # Pick your baseUrl here:
 @baseUrl = http://localhost:3002
-# @baseUrl = https://api.spidery.khulnasoft.com
+#@baseUrl = https://api-spidery.khulnasoft.com
 
 ### Scrape Website
 # @name scrape
@@ -96,3 +96,27 @@ content-type: application/json
 # @name extractSpideryStatus 
 GET {{baseUrl}}/v1/extract/{{extractSpideryId}} HTTP/1.1
 Authorization: Bearer {{$dotenv TEST_API_KEY}}
+
+###
+DELETE {{baseUrl}}/v1/crawl/c94136f9-86c1-4a97-966c-1c8e0274778f HTTP/1.1
+Authorization: Bearer {{$dotenv TEST_API_KEY}}
+
+### Generate LLMs TXT
+# @name generateLlmsTxt
+POST {{baseUrl}}/v1/llmstxt HTTP/1.1
+Authorization: Bearer {{$dotenv TEST_API_KEY}}
+content-type: application/json
+
+{
+  "url": "https://spidery.khulnasoft.com",
+  "maxUrls": 1,
+  "showFullText": false
+}
+
+
+### Check Generate LLMs TXT Status
+@generateLlmsTxtId = {{generateLlmsTxt.response.body.$.id}}
+# @name generateLlmsTxtStatus
+GET {{baseUrl}}/v1/llmstxt/{{generateLlmsTxtId}} HTTP/1.1
+Authorization: Bearer {{$dotenv TEST_API_KEY}}
+

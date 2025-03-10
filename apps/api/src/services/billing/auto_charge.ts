@@ -2,10 +2,13 @@
 import { AuthCreditUsageChunk } from "../../controllers/v1/types";
 import { getACUC } from "../../controllers/auth";
 import { redlock } from "../redlock";
-import { supabase_service } from "../supabase";
+import { supabase_rr_service, supabase_service } from "../supabase";
 import { createPaymentIntent } from "./stripe";
 import { issueCredits } from "./issue_credits";
-import { sendNotification, sendNotificationWithCustomDays } from "../notification/email_notification";
+import {
+  sendNotification,
+  sendNotificationWithCustomDays,
+} from "../notification/email_notification";
 import { NotificationType } from "../../types";
 import { deleteKey, getValue, setValue } from "../redis";
 import { redisRateLimitClient } from "../rate-limiter";
@@ -36,7 +39,10 @@ export async function autoCharge(
   const cooldownKey = `auto-recharge-cooldown:${chunk.team_id}`;
   const hourlyCounterKey = `auto-recharge-hourly:${chunk.team_id}`;
 
-  if (chunk.team_id === "285bb597-6eaf-4b96-801c-51461fc3c543" || chunk.team_id === "dec639a0-98ca-4995-95b5-48ac1ffab5b7") {
+  if (
+    chunk.team_id === "285bb597-6eaf-4b96-801c-51461fc3c543" ||
+    chunk.team_id === "dec639a0-98ca-4995-95b5-48ac1ffab5b7"
+  ) {
     return {
       success: false,
       message: "Auto-recharge failed: blocked team",
@@ -124,7 +130,7 @@ export async function autoCharge(
           if (chunk.sub_user_id) {
             // Fetch the customer's Stripe information
             const { data: customer, error: customersError } =
-              await supabase_service
+              await supabase_rr_service
                 .from("customers")
                 .select("id, stripe_customer_id")
                 .eq("id", chunk.sub_user_id)
@@ -183,21 +189,28 @@ export async function autoCharge(
                 try {
                   // Check for frequent auto-recharges in the past week
                   const weeklyAutoRechargeKey = `auto-recharge-weekly:${chunk.team_id}`;
-                  const weeklyRecharges = await redisRateLimitClient.incr(weeklyAutoRechargeKey);
-                  // Set expiry for 7 days if not already set
-                await redisRateLimitClient.expire(weeklyAutoRechargeKey, 7 * 24 * 60 * 60);
-
-                // If this is the second auto-recharge in a week, send notification
-                if (weeklyRecharges >= 2) {
-                  await sendNotificationWithCustomDays(
-                    chunk.team_id,
-                    NotificationType.AUTO_RECHARGE_FREQUENT,
-                    7, // Send at most once per week
-                    false
+                  const weeklyRecharges = await redisRateLimitClient.incr(
+                    weeklyAutoRechargeKey,
                   );
-                }
+                  // Set expiry for 7 days if not already set
+                  await redisRateLimitClient.expire(
+                    weeklyAutoRechargeKey,
+                    7 * 24 * 60 * 60,
+                  );
+
+                  // If this is the second auto-recharge in a week, send notification
+                  if (weeklyRecharges >= 2) {
+                    await sendNotificationWithCustomDays(
+                      chunk.team_id,
+                      NotificationType.AUTO_RECHARGE_FREQUENT,
+                      7, // Send at most once per week
+                      false,
+                    );
+                  }
                 } catch (error) {
-                  logger.error(`Error sending frequent auto-recharge notification: ${error}`);
+                  logger.error(
+                    `Error sending frequent auto-recharge notification: ${error}`,
+                  );
                 }
 
                 await sendNotification(

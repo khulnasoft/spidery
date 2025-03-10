@@ -13,7 +13,7 @@ import os
 
 from .spidery import SpideryApp # noqa
 
-__version__ = "1.10.2"
+__version__ = "1.13.5"
 
 # Define the logger for the Spidery project
 logger: logging.Logger = logging.getLogger("spidery")

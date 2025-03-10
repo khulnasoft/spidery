@@ -15,28 +15,27 @@ const emailTemplates: Record<
 > = {
   [NotificationType.APPROACHING_LIMIT]: {
     subject: "You've used 80% of your credit limit - Spidery",
-    html: "Hey there,<br/><p>You are approaching your credit limit for this billing period. Your usage right now is around 80% of your total credit limit. Consider upgrading your plan to avoid hitting the limit. Check out our <a href='https://spidery.khulonasoft.com/pricing'>pricing page</a> for more info.</p><br/>Thanks,<br/>Spidery Team<br/>",
+    html: "Hey there,<br/><p>You are approaching your credit limit for this billing period. Your usage right now is around 80% of your total credit limit. Consider upgrading your plan to avoid hitting the limit. Check out our <a href='https://spidery.khulnasoft.com/pricing'>pricing page</a> for more info.</p><br/>Thanks,<br/>Spidery Team<br/>",
   },
   [NotificationType.LIMIT_REACHED]: {
-    subject:
-      "Credit Limit Reached! Take action now to resume usage - Spidery",
-    html: "Hey there,<br/><p>You have reached your credit limit for this billing period. To resume usage, please upgrade your plan. Check out our <a href='https://spidery.khulonasoft.com/pricing'>pricing page</a> for more info.</p><br/>Thanks,<br/>Spidery Team<br/>",
+    subject: "Credit Limit Reached! Take action now to resume usage - Spidery",
+    html: "Hey there,<br/><p>You have reached your credit limit for this billing period. To resume usage, please upgrade your plan. Check out our <a href='https://spidery.khulnasoft.com/pricing'>pricing page</a> for more info.</p><br/>Thanks,<br/>Spidery Team<br/>",
   },
   [NotificationType.RATE_LIMIT_REACHED]: {
     subject: "Rate Limit Reached - Spidery",
-    html: "Hey there,<br/><p>You've hit one of the Spidery endpoint's rate limit! Take a breather and try again in a few moments. If you need higher rate limits, consider upgrading your plan. Check out our <a href='https://spidery.khulonasoft.com/pricing'>pricing page</a> for more info.</p><p>If you have any questions, feel free to reach out to us at <a href='mailto:help@spidery.khulnasoft.com'>help@spidery.khulnasoft.com</a></p><br/>Thanks,<br/>Spidery Team<br/><br/>Ps. this email is only sent once every 7 days if you reach a rate limit.",
+    html: "Hey there,<br/><p>You've hit one of the Spidery endpoint's rate limit! Take a breather and try again in a few moments. If you need higher rate limits, consider upgrading your plan. Check out our <a href='https://spidery.khulnasoft.com/pricing'>pricing page</a> for more info.</p><p>If you have any questions, feel free to reach out to us at <a href='mailto:help@spidery.com'>help@spidery.com</a></p><br/>Thanks,<br/>Spidery Team<br/><br/>Ps. this email is only sent once every 7 days if you reach a rate limit.",
   },
   [NotificationType.AUTO_RECHARGE_SUCCESS]: {
     subject: "Auto recharge successful - Spidery",
-    html: "Hey there,<br/><p>Your account was successfully recharged with 1000 credits because your remaining credits were below the threshold. Consider upgrading your plan at <a href='https://spidery.khulonasoft.com/pricing'>spidery.khulonasoft.com/pricing</a> to avoid hitting the limit.</p><br/>Thanks,<br/>Spidery Team<br/>",
+    html: "Hey there,<br/><p>Your account was successfully recharged with 1000 credits because your remaining credits were below the threshold. Consider upgrading your plan at <a href='https://spidery.khulnasoft.com/pricing'>spidery.khulnasoft.com/pricing</a> to avoid hitting the limit.</p><br/>Thanks,<br/>Spidery Team<br/>",
   },
   [NotificationType.AUTO_RECHARGE_FAILED]: {
     subject: "Auto recharge failed - Spidery",
-    html: "Hey there,<br/><p>Your auto recharge failed. Please try again manually. If the issue persists, please reach out to us at <a href='mailto:help@spidery.khulnasoft.com'>help@spidery.khulnasoft.com</a></p><br/>Thanks,<br/>Spidery Team<br/>",
+    html: "Hey there,<br/><p>Your auto recharge failed. Please try again manually. If the issue persists, please reach out to us at <a href='mailto:help@spidery.com'>help@spidery.com</a></p><br/>Thanks,<br/>Spidery Team<br/>",
   },
   [NotificationType.AUTO_RECHARGE_FREQUENT]: {
     subject: "Consider upgrading your plan - Spidery",
-    html: "Hey there,<br/><p>We've noticed frequent auto-recharges on your account. To optimize your costs and get better features, we recommend upgrading to a higher tier plan with:</p><ul><li>More included credits</li><li>Better pricing per credit</li><li>Higher rate limits</li></ul><p>View our plans at <a href='https://spidery.khulonasoft.com/pricing'>spidery.khulonasoft.com/pricing</a>. If none fit your needs, email us at <a href='mailto:help@spidery.khulnasoft.com'>help@spidery.khulnasoft.com</a> with 'Scale pricing' in the subject and we'll quickly help you move to a scale plan.</p><br/>Thanks,<br/>Spidery Team<br/>",
+    html: "Hey there,<br/><p>We've noticed frequent auto-recharges on your account. To optimize your costs and get better features, we recommend upgrading to a higher tier plan with:</p><ul><li>More included credits</li><li>Better pricing per credit</li><li>Higher rate limits</li></ul><p>View our plans at <a href='https://spidery.khulnasoft.com/pricing'>spidery.khulnasoft.com/pricing</a>. If none fit your needs, email us at <a href='mailto:help@spidery.com'>help@spidery.com</a> with 'Scale pricing' in the subject and we'll quickly help you move to a scale plan.</p><br/>Thanks,<br/>Spidery Team<br/>",
   },
   [NotificationType.CONCURRENCY_LIMIT_REACHED]: {
     subject: "You could be scraping faster - Spidery",
@@ -44,7 +43,7 @@ const emailTemplates: Record<
     <br/>
     <p>We've improved our system by transitioning to concurrency limits, allowing faster scraping by default and eliminating* the often rate limit errors.</p>
     <p>You're hitting the concurrency limit for your plan quite often, which means Spidery can't scrape as fast as it could. But don't worry, it is not failing your requests and you are still getting your results.</p>
-    <p>This is just to let you know that you could be scraping more pages faster. Consider upgrading your plan at <a href='https://spidery.khulonasoft.com/pricing'>spidery.khulonasoft.com/pricing</a>.</p><br/>Thanks,<br/>Spidery Team<br/>`,
+    <p>This is just to let you know that you could be scraping more pages faster. Consider upgrading your plan at <a href='https://spidery.khulnasoft.com/pricing'>spidery.khulnasoft.com/pricing</a>.</p><br/>Thanks,<br/>Spidery Team<br/>`,
   },
 };
 
@@ -74,9 +73,9 @@ export async function sendEmailNotification(
 
   try {
     const { data, error } = await resend.emails.send({
-      from: "Spidery <spidery@getmendableai.com>",
+      from: "Spidery <spidery@getkhulnasoft.com>",
       to: [email],
-      reply_to: "help@spidery.khulnasoft.com",
+      reply_to: "help@spidery.com",
       subject: emailTemplates[notificationType].subject,
       html: emailTemplates[notificationType].html,
     });
@@ -197,101 +196,120 @@ export async function sendNotificationInternal(
   );
 }
 
-
 export async function sendNotificationWithCustomDays(
   team_id: string,
   notificationType: NotificationType,
   daysBetweenEmails: number,
   bypassRecentChecks: boolean = false,
 ) {
-  return withAuth(async (
-    team_id: string,
-    notificationType: NotificationType,
-    daysBetweenEmails: number,
-    bypassRecentChecks: boolean,
-  ) => {
-    const redisKey = "notification_sent:" + notificationType + ":" + team_id;
+  return withAuth(
+    async (
+      team_id: string,
+      notificationType: NotificationType,
+      daysBetweenEmails: number,
+      bypassRecentChecks: boolean,
+    ) => {
+      const redisKey = "notification_sent:" + notificationType + ":" + team_id;
 
-    const didSendRecentNotification = (await redisConnection.get(redisKey)) !== null;
+      const didSendRecentNotification =
+        (await redisConnection.get(redisKey)) !== null;
 
-    if (didSendRecentNotification && !bypassRecentChecks) {
-      logger.debug(`Notification already sent within the last ${daysBetweenEmails} days for team_id: ${team_id} and notificationType: ${notificationType}`);
+      if (didSendRecentNotification && !bypassRecentChecks) {
+        logger.debug(
+          `Notification already sent within the last ${daysBetweenEmails} days for team_id: ${team_id} and notificationType: ${notificationType}`,
+        );
+        return { success: true };
+      }
+
+      await redisConnection.set(
+        redisKey,
+        "1",
+        "EX",
+        daysBetweenEmails * 24 * 60 * 60,
+      );
+
+      const now = new Date();
+      const pastDate = new Date(
+        now.getTime() - daysBetweenEmails * 24 * 60 * 60 * 1000,
+      );
+
+      const { data: recentNotifications, error: recentNotificationsError } =
+        await supabase_service
+          .from("user_notifications")
+          .select("*")
+          .eq("team_id", team_id)
+          .eq("notification_type", notificationType)
+          .gte("sent_date", pastDate.toISOString());
+
+      if (recentNotificationsError) {
+        logger.debug(
+          `Error fetching recent notifications: ${recentNotificationsError}`,
+        );
+        await redisConnection.del(redisKey); // free up redis, let it try again
+        return { success: false };
+      }
+
+      if (recentNotifications.length > 0 && !bypassRecentChecks) {
+        logger.debug(
+          `Notification already sent within the last ${daysBetweenEmails} days for team_id: ${team_id} and notificationType: ${notificationType}`,
+        );
+        await redisConnection.set(
+          redisKey,
+          "1",
+          "EX",
+          daysBetweenEmails * 24 * 60 * 60,
+        );
+        return { success: true };
+      }
+
+      console.log(
+        `Sending notification for team_id: ${team_id} and notificationType: ${notificationType}`,
+      );
+      // get the emails from the user with the team_id
+      const { data: emails, error: emailsError } = await supabase_service
+        .from("users")
+        .select("email")
+        .eq("team_id", team_id);
+
+      if (emailsError) {
+        logger.debug(`Error fetching emails: ${emailsError}`);
+        await redisConnection.del(redisKey); // free up redis, let it try again
+        return { success: false };
+      }
+
+      for (const email of emails) {
+        await sendEmailNotification(email.email, notificationType);
+      }
+
+      const { error: insertError } = await supabase_service
+        .from("user_notifications")
+        .insert([
+          {
+            team_id: team_id,
+            notification_type: notificationType,
+            sent_date: new Date().toISOString(),
+            timestamp: new Date().toISOString(),
+          },
+        ]);
+
+      if (process.env.SLACK_ADMIN_WEBHOOK_URL && emails.length > 0) {
+        sendSlackWebhook(
+          `${getNotificationString(notificationType)}: Team ${team_id}, with email ${emails[0].email}.`,
+          false,
+          process.env.SLACK_ADMIN_WEBHOOK_URL,
+        ).catch((error) => {
+          logger.debug(`Error sending slack notification: ${error}`);
+        });
+      }
+
+      if (insertError) {
+        logger.debug(`Error inserting notification record: ${insertError}`);
+        await redisConnection.del(redisKey); // free up redis, let it try again
+        return { success: false };
+      }
+
       return { success: true };
-    }
-    
-    await redisConnection.set(redisKey, "1", "EX", daysBetweenEmails * 24 * 60 * 60);
-
-    const now = new Date();
-    const pastDate = new Date(now.getTime() - daysBetweenEmails * 24 * 60 * 60 * 1000);
-
-    const { data: recentNotifications, error: recentNotificationsError } = await supabase_service
-      .from("user_notifications")
-      .select("*")
-      .eq("team_id", team_id)
-      .eq("notification_type", notificationType)
-      .gte("sent_date", pastDate.toISOString());
-
-    if (recentNotificationsError) {
-      logger.debug(`Error fetching recent notifications: ${recentNotificationsError}`);
-      await redisConnection.del(redisKey); // free up redis, let it try again
-      return { success: false };
-    }
-
-    if (recentNotifications.length > 0 && !bypassRecentChecks) {
-      logger.debug(`Notification already sent within the last ${daysBetweenEmails} days for team_id: ${team_id} and notificationType: ${notificationType}`);
-      await redisConnection.set(redisKey, "1", "EX", daysBetweenEmails * 24 * 60 * 60);
-      return { success: true };
-    }
-
-    console.log(
-      `Sending notification for team_id: ${team_id} and notificationType: ${notificationType}`,
-    );
-    // get the emails from the user with the team_id
-    const { data: emails, error: emailsError } = await supabase_service
-      .from("users")
-      .select("email")
-      .eq("team_id", team_id);
-
-    if (emailsError) {
-      logger.debug(`Error fetching emails: ${emailsError}`);
-      await redisConnection.del(redisKey); // free up redis, let it try again
-      return { success: false };
-    }
-
-    await Promise.all(emails.map(email => sendEmailNotification(email.email, notificationType)));
-
-    const { error: insertError } = await supabase_service
-      .from("user_notifications")
-      .insert([
-        {
-          team_id: team_id,
-          notification_type: notificationType,
-          sent_date: new Date().toISOString(),
-          timestamp: new Date().toISOString(),
-        },
-      ]);
-
-    if (process.env.SLACK_ADMIN_WEBHOOK_URL && emails.length > 0) {
-      sendSlackWebhook(
-        `${getNotificationString(notificationType)}: Team ${team_id}, with email ${emails[0].email}.`,
-        false,
-        process.env.SLACK_ADMIN_WEBHOOK_URL,
-      ).catch((error) => {
-        logger.debug(`Error sending slack notification: ${error}`);
-      });
-    }
-
-    if (insertError) {
-      logger.debug(`Error inserting notification record: ${insertError}`);
-      await redisConnection.del(redisKey); // free up redis, let it try again
-      return { success: false };
-    }
-
-    return { success: true };
-  }, undefined)(
-    team_id,
-    notificationType,
-    daysBetweenEmails,
-    bypassRecentChecks,
-  );
+    },
+    undefined,
+  )(team_id, notificationType, daysBetweenEmails, bypassRecentChecks);
 }

@@ -416,7 +416,7 @@ describe("E2E Tests for v0 API Routes", () => {
         expect(completedResponse.body.data[0]).toHaveProperty("content");
         expect(completedResponse.body.data[0]).toHaveProperty("markdown");
         expect(completedResponse.body.data[0]).toHaveProperty("metadata");
-        expect(completedResponse.body.data[0].content).toContain("Khulnasoft");
+        expect(completedResponse.body.data[0].content).toContain("Mendable");
         expect(completedResponse.body.data[0].metadata.pageStatusCode).toBe(
           200,
         );

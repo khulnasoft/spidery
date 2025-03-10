@@ -41,7 +41,7 @@ _This repository is in development, and we’re still integrating custom modules
 
 ## What is Spidery?
 
-[Spidery](https://spidery.khulnasoft.com?ref=github) is an API service that takes a URL, crawls it, and converts it into clean markdown or structured data. We crawl all accessible subpages and give you clean data for each. No sitemap required. Check out our [documentation](https://docs.spidery.khulnasoft.com).
+[Spidery](https://spidery.khulnasoft.com?ref=github) is an API service that takes a URL, crawls it, and converts it into clean markdown or structured data. We crawl all accessible subpages and give you clean data for each. No sitemap required. Check out our [documentation](https://docs-spidery.khulnasoft.com).
 
 _Pst. hey, you, join our stargazers :)_
 
@@ -54,8 +54,8 @@ _Pst. hey, you, join our stargazers :)_
 We provide an easy to use API with our hosted version. You can find the playground and documentation [here](https://spidery.khulnasoft.com/playground). You can also self host the backend if you'd like.
 
 Check out the following resources to get started:
-- [x] **API**: [Documentation](https://docs.spidery.khulnasoft.com/api-reference/introduction)
-- [x] **SDKs**: [Python](https://docs.spidery.khulnasoft.com/sdks/python), [Node](https://docs.spidery.khulnasoft.com/sdks/node), [Go](https://docs.spidery.khulnasoft.com/sdks/go), [Rust](https://docs.spidery.khulnasoft.com/sdks/rust)
+- [x] **API**: [Documentation](https://docs-spidery.khulnasoft.com/api-reference/introduction)
+- [x] **SDKs**: [Python](https://docs-spidery.khulnasoft.com/sdks/python), [Node](https://docs-spidery.khulnasoft.com/sdks/node), [Go](https://docs-spidery.khulnasoft.com/sdks/go), [Rust](https://docs-spidery.khulnasoft.com/sdks/rust)
 - [x] **LLM Frameworks**: [Langchain (python)](https://python.langchain.com/docs/integrations/document_loaders/spidery/), [Langchain (js)](https://js.langchain.com/docs/integrations/document_loaders/web_loaders/spidery), [Llama Index](https://docs.llamaindex.ai/en/latest/examples/data_connectors/WebPageDemo/#using-spidery-reader), [Crew.ai](https://docs.crewai.com/), [Composio](https://composio.dev/tools/spidery/all), [PraisonAI](https://docs.praison.ai/spidery/), [Superinterface](https://superinterface.ai/docs/assistants/functions/spidery), [Vectorize](https://docs.vectorize.io/integrations/source-connectors/spidery)
 - [x] **Low-code Frameworks**: [Dify](https://dify.ai/blog/dify-ai-blog-integrated-with-spidery), [Langflow](https://docs.langflow.org/), [Flowise AI](https://docs.flowiseai.com/integrations/langchain/document-loaders/spidery), [Cargo](https://docs.getcargo.io/integration/spidery), [Pipedream](https://pipedream.com/apps/spidery/)
 - [x] **Others**: [Zapier](https://zapier.com/apps/spidery/integrations), [Pabbly Connect](https://www.pabbly.com/connect/integrations/spidery/)
@@ -83,19 +83,19 @@ To use the API, you need to sign up on [Spidery](https://spidery.khulnasoft.com)
 - **Actions**: click, scroll, input, wait and more before extracting data
 - **Batching (New)**: scrape thousands of URLs at the same time with a new async endpoint.
 
-You can find all of Spidery's capabilities and how to use them in our [documentation](https://docs.spidery.khulnasoft.com)
+You can find all of Spidery's capabilities and how to use them in our [documentation](https://docs-spidery.khulnasoft.com)
 
 ### Crawling
 
 Used to crawl a URL and all accessible subpages. This submits a crawl job and returns a job ID to check the status of the crawl.
 
 ```bash
-curl -X POST https://api.spidery.khulnasoft.com/v1/crawl \
+curl -X POST https://api-spidery.khulnasoft.com/v1/crawl \
     -H 'Content-Type: application/json' \
     -H 'Authorization: Bearer fc-YOUR_API_KEY' \
     -d '{
-      "url": "https://docs.spidery.khulnasoft.com",
-      "limit": 100,
+      "url": "https://docs-spidery.khulnasoft.com",
+      "limit": 10,
       "scrapeOptions": {
         "formats": ["markdown", "html"]
       }
@@ -108,7 +108,7 @@ Returns a crawl job id and the url to check the status of the crawl.
 {
   "success": true,
   "id": "123-456-789",
-  "url": "https://api.spidery.khulnasoft.com/v1/crawl/123-456-789"
+  "url": "https://api-spidery.khulnasoft.com/v1/crawl/123-456-789"
 }
 ```
 
@@ -117,7 +117,7 @@ Returns a crawl job id and the url to check the status of the crawl.
 Used to check the status of a crawl job and get its result.
 
 ```bash
-curl -X GET https://api.spidery.khulnasoft.com/v1/crawl/123-456-789 \
+curl -X GET https://api-spidery.khulnasoft.com/v1/crawl/123-456-789 \
   -H 'Content-Type: application/json' \
   -H 'Authorization: Bearer YOUR_API_KEY'
 ```
@@ -135,7 +135,7 @@ curl -X GET https://api.spidery.khulnasoft.com/v1/crawl/123-456-789 \
       "metadata": {
         "title": "Build a 'Chat with website' using Groq Llama 3 | Spidery",
         "language": "en",
-        "sourceURL": "https://docs.spidery.khulnasoft.com/learn/rag-llama3",
+        "sourceURL": "https://docs-spidery.khulnasoft.com/learn/rag-llama3",
         "description": "Learn how to use Spidery, Groq Llama 3, and Langchain to build a 'Chat with your website' bot.",
         "ogLocaleAlternate": [],
         "statusCode": 200
@@ -150,11 +150,11 @@ curl -X GET https://api.spidery.khulnasoft.com/v1/crawl/123-456-789 \
 Used to scrape a URL and get its content in the specified formats.
 
 ```bash
-curl -X POST https://api.spidery.khulnasoft.com/v1/scrape \
+curl -X POST https://api-spidery.khulnasoft.com/v1/scrape \
     -H 'Content-Type: application/json' \
     -H 'Authorization: Bearer YOUR_API_KEY' \
     -d '{
-      "url": "https://docs.spidery.khulnasoft.com",
+      "url": "https://docs-spidery.khulnasoft.com",
       "formats" : ["markdown", "html"]
     }'
 ```
@@ -171,7 +171,7 @@ Response:
       "title": "Home - Spidery",
       "description": "Spidery crawls and converts any website into clean markdown.",
       "language": "en",
-      "keywords": "Spidery,Markdown,Data,Khulnasoft,Langchain",
+      "keywords": "Spidery,Markdown,Data,Mendable,Langchain",
       "robots": "follow, index",
       "ogTitle": "Spidery",
       "ogDescription": "Turn any website into LLM-ready data.",
@@ -191,7 +191,7 @@ Response:
 Used to map a URL and get urls of the website. This returns most links present on the website.
 
 ```bash cURL
-curl -X POST https://api.spidery.khulnasoft.com/v1/map \
+curl -X POST https://api-spidery.khulnasoft.com/v1/map \
     -H 'Content-Type: application/json' \
     -H 'Authorization: Bearer YOUR_API_KEY' \
     -d '{
@@ -219,7 +219,7 @@ Response:
 Map with `search` param allows you to search for specific urls inside a website.
 
 ```bash cURL
-curl -X POST https://api.spidery.khulnasoft.com/v1/map \
+curl -X POST https://api-spidery.khulnasoft.com/v1/map \
     -H 'Content-Type: application/json' \
     -H 'Authorization: Bearer YOUR_API_KEY' \
     -d '{
@@ -234,9 +234,9 @@ Response will be an ordered list from the most relevant to the least relevant.
 {
   "status": "success",
   "links": [
-    "https://docs.spidery.khulnasoft.com",
-    "https://docs.spidery.khulnasoft.com/sdks/python",
-    "https://docs.spidery.khulnasoft.com/learn/rag-llama3",
+    "https://docs-spidery.khulnasoft.com",
+    "https://docs-spidery.khulnasoft.com/sdks/python",
+    "https://docs-spidery.khulnasoft.com/learn/rag-llama3",
   ]
 }
 ```
@@ -256,13 +256,13 @@ Example: https://spidery.khulnasoft.com/*
 When you use /*, Spidery will automatically crawl and parse all URLs it can discover in that domain, then extract the requested data.
 
 ```bash
-curl -X POST https://api.spidery.khulnasoft.com/v1/extract \
+curl -X POST https://api-spidery.khulnasoft.com/v1/extract \
     -H 'Content-Type: application/json' \
     -H 'Authorization: Bearer YOUR_API_KEY' \
     -d '{
       "urls": [
         "https://spidery.khulnasoft.com/*", 
-        "https://docs.spidery.khulnasoft.com/", 
+        "https://docs-spidery.khulnasoft.com/", 
         "https://www.ycombinator.com/companies"
       ],
       "prompt": "Extract the company mission, whether it is open source, and whether it is in Y Combinator from the page.",
@@ -281,7 +281,6 @@ curl -X POST https://api.spidery.khulnasoft.com/v1/extract \
         },
         "required": [
           "company_mission",
-          "supports_sso",
           "is_open_source",
           "is_in_yc"
         ]
@@ -316,7 +315,7 @@ If you are using the sdks, it will auto pull the response for you:
 Used to extract structured data from scraped pages.
 
 ```bash
-curl -X POST https://api.spidery.khulnasoft.com/v1/scrape \
+curl -X POST https://api-spidery.khulnasoft.com/v1/scrape \
     -H 'Content-Type: application/json' \
     -H 'Authorization: Bearer YOUR_API_KEY' \
     -d '{
@@ -356,15 +355,15 @@ curl -X POST https://api.spidery.khulnasoft.com/v1/scrape \
   "data": {
     "content": "Raw Content",
     "metadata": {
-      "title": "Khulnasoft",
-      "description": "Khulnasoft allows you to easily build AI chat applications. Ingest, customize, then deploy with one line of code anywhere you want. Brought to you by SideGuide",
+      "title": "Mendable",
+      "description": "Mendable allows you to easily build AI chat applications. Ingest, customize, then deploy with one line of code anywhere you want. Brought to you by SideGuide",
       "robots": "follow, index",
-      "ogTitle": "Khulnasoft",
-      "ogDescription": "Khulnasoft allows you to easily build AI chat applications. Ingest, customize, then deploy with one line of code anywhere you want. Brought to you by SideGuide",
+      "ogTitle": "Mendable",
+      "ogDescription": "Mendable allows you to easily build AI chat applications. Ingest, customize, then deploy with one line of code anywhere you want. Brought to you by SideGuide",
       "ogUrl": "https://khulnasoft.com/",
-      "ogImage": "https://khulnasoft.com/khulnasoft_new_og1.png",
+      "ogImage": "https://khulnasoft.com/mendable_new_og1.png",
       "ogLocaleAlternate": [],
-      "ogSiteName": "Khulnasoft",
+      "ogSiteName": "Mendable",
       "sourceURL": "https://khulnasoft.com/"
     },
     "json": {
@@ -382,11 +381,11 @@ curl -X POST https://api.spidery.khulnasoft.com/v1/scrape \
 You can now extract without a schema by just passing a `prompt` to the endpoint. The llm chooses the structure of the data.
 
 ```bash
-curl -X POST https://api.spidery.khulnasoft.com/v1/scrape \
+curl -X POST https://api-spidery.khulnasoft.com/v1/scrape \
     -H 'Content-Type: application/json' \
     -H 'Authorization: Bearer YOUR_API_KEY' \
     -d '{
-      "url": "https://docs.spidery.khulnasoft.com/",
+      "url": "https://docs-spidery.khulnasoft.com/",
       "formats": ["json"],
       "jsonOptions": {
         "prompt": "Extract the company mission from the page."
@@ -401,7 +400,7 @@ Spidery allows you to perform various actions on a web page before scraping its 
 Here is an example of how to use actions to navigate to google.com, search for Spidery, click on the first result, and take a screenshot.
 
 ```bash
-curl -X POST https://api.spidery.khulnasoft.com/v1/scrape \
+curl -X POST https://api-spidery.khulnasoft.com/v1/scrape \
     -H 'Content-Type: application/json' \
     -H 'Authorization: Bearer YOUR_API_KEY' \
     -d '{
@@ -427,11 +426,11 @@ curl -X POST https://api.spidery.khulnasoft.com/v1/scrape \
 You can now batch scrape multiple URLs at the same time. It is very similar to how the /crawl endpoint works. It submits a batch scrape job and returns a job ID to check the status of the batch scrape.
 
 ```bash
-curl -X POST https://api.spidery.khulnasoft.com/v1/batch/scrape \
+curl -X POST https://api-spidery.khulnasoft.com/v1/batch/scrape \
     -H 'Content-Type: application/json' \
     -H 'Authorization: Bearer YOUR_API_KEY' \
     -d '{
-      "urls": ["https://docs.spidery.khulnasoft.com", "https://docs.spidery.khulnasoft.com/sdks/overview"],
+      "urls": ["https://docs-spidery.khulnasoft.com", "https://docs-spidery.khulnasoft.com/sdks/overview"],
       "formats" : ["markdown", "html"]
     }'
 ```
@@ -443,11 +442,11 @@ The search endpoint combines web search with Spidery’s scraping capabilities t
 Include `scrapeOptions` with `formats: ["markdown"]` to get complete markdown content for each search result otherwise it defaults to getting SERP results (url, title, description).
 
 ```bash
-curl -X POST https://api.spidery.khulnasoft.com/v1/search \
+curl -X POST https://api-spidery.khulnasoft.com/v1/search \
     -H 'Content-Type: application/json' \
     -H 'Authorization: Bearer YOUR_API_KEY' \
     -d '{
-      "query": "What is Khulnasoft?"
+      "query": "What is Mendable?"
     }'
 ```
 
@@ -457,7 +456,7 @@ curl -X POST https://api.spidery.khulnasoft.com/v1/search \
   "data": [
     {
       "url": "https://khulnasoft.com",
-      "title": "Khulnasoft | AI for CX and Sales",
+      "title": "Mendable | AI for CX and Sales",
       "description": "AI for CX and Sales"
     }
   ]

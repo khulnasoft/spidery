@@ -37,9 +37,9 @@ Spidery
 Co-Founder
 April 2024 - Present (6 months)
 San Francisco, California, United States
-Spidery by Khulnasoft. Building data extraction infrastructure for AI. Used by
+Spidery by Mendable. Building data extraction infrastructure for AI. Used by
 Amazon, Zapier, and Nvidia (YC S22)
-Khulnasoft
+Mendable
 2 years 7 months
 Co-Founder @ Khulnasoft.com
 March 2022 - Present (2 years 7 months)
@@ -93,7 +93,7 @@ Economics and Philosophy
 # First, scrape the jobs page using Spidery
 try:
     response = requests.post(
-        "https://api.spidery.khulnasoft.com/v1/scrape",
+        "https://api-spidery.khulnasoft.com/v1/scrape",
         headers={
             "Content-Type": "application/json",
             "Authorization": f"Bearer {spidery_api_key}"
@@ -184,7 +184,7 @@ for link in apply_links:
 for index, link in enumerate(apply_links):
     try:
         response = requests.post(
-            "https://api.spidery.khulnasoft.com/v1/scrape",
+            "https://api-spidery.khulnasoft.com/v1/scrape",
             headers={
                 "Content-Type": "application/json",
                 "Authorization": f"Bearer {spidery_api_key}"

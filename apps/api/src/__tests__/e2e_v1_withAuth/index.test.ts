@@ -646,7 +646,7 @@ describe("E2E Tests for v1 API Routes", () => {
         expect(links.length).toBeGreaterThan(0);
 
         const containsDocsSpideryDev = links.some((link: string) =>
-          link.includes("docs.spidery.khulnasoft.com"),
+          link.includes("docs-spidery.khulnasoft.com"),
         );
         expect(containsDocsSpideryDev).toBe(true);
       },
@@ -678,7 +678,7 @@ describe("E2E Tests for v1 API Routes", () => {
         expect(links.length).toBeGreaterThan(0);
 
         const containsDocsSpideryDev = links.some((link: string) =>
-          link.includes("docs.spidery.khulnasoft.com"),
+          link.includes("docs-spidery.khulnasoft.com"),
         );
         expect(containsDocsSpideryDev).toBe(true);
       },
@@ -709,7 +709,7 @@ describe("E2E Tests for v1 API Routes", () => {
         const links = response.body.links as unknown[];
         expect(Array.isArray(links)).toBe(true);
         expect(links.length).toBeGreaterThan(0);
-        expect(links[0]).not.toContain("docs.spidery.khulnasoft.com");
+        expect(links[0]).not.toContain("docs-spidery.khulnasoft.com");
       },
     );
 
@@ -988,7 +988,7 @@ describe("E2E Tests for v1 API Routes", () => {
           .post("/v1/crawl")
           .set("Authorization", `Bearer ${process.env.TEST_API_KEY}`)
           .set("Content-Type", "application/json")
-          .send({ url: "https://docs.spidery.khulnasoft.com" });
+          .send({ url: "https://docs-spidery.khulnasoft.com" });
         expect(crawlResponse.statusCode).toBe(200);
 
         let isCompleted = false;
@@ -1037,7 +1037,7 @@ describe("E2E Tests for v1 API Routes", () => {
           .post("/v1/crawl")
           .set("Authorization", `Bearer ${process.env.TEST_API_KEY}`)
           .set("Content-Type", "application/json")
-          .send({ url: "https://docs.spidery.khulnasoft.com", limit: 10 });
+          .send({ url: "https://docs-spidery.khulnasoft.com", limit: 10 });
 
         expect(crawlResponse.statusCode).toBe(200);
 

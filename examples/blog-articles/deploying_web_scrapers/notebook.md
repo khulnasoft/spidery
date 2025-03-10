@@ -145,7 +145,7 @@ Note: Most cloud platforms require a credit card for verification, even when usi
 
 To demonstrate deployment concepts effectively, we'll start by building a basic web scraper using Spidery, a modern scraping API that simplifies many common challenges.
 
-[Spidery](https://docs.spidery.khulnasoft.com) offers several key advantages compared to traditional Python web scraping libraries:
+[Spidery](https://docs-spidery.khulnasoft.com) offers several key advantages compared to traditional Python web scraping libraries:
 
 - Dead simple to use with only a few dependencies
 - Handles complex scraping challenges automatically (proxies, anti-bot mechanisms, dynamic JS content)
@@ -981,7 +981,7 @@ Remember, start small and scale up as needed. No need to jump straight into comp
 Here are some related resources that might interest you:
 
 - [GitHub Actions documentation](https://docs.github.com/en/actions)
-- [Spidery documentation](docs.spidery.khulnasoft.com)
+- [Spidery documentation](docs-spidery.khulnasoft.com)
 - [Comprehensive guide on Spidery's `scrape_url` method](https://www.spidery.khulnasoft.com/blog/mastering-spidery-scrape-endpoint)
 - [How to generate sitemaps in Python using Spidery](https://www.spidery.khulnasoft.com/blog/how-to-generate-sitemaps-using-spidery-map-endpoint)
 

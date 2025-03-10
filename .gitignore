@@ -40,3 +40,4 @@ apps/js-sdk/spidery/dist
 .vscode
 llm-links.txt
 mapped-links.txt
+*.venv/*.env

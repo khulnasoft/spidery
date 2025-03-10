@@ -481,9 +481,9 @@ While it may not capture every single URL compared to full crawling solutions, i
 
 To discover what more Spidery has to offer, be sure to read the following related resources:
 
-- [Spidery Documentation](docs.spidery.khulnasoft.com)
+- [Spidery Documentation](docs-spidery.khulnasoft.com)
 - [Spidery Blog](https://www.spidery.khulnasoft.com/blog/category/tutorials)
-- [Spidery API Reference](https://docs.spidery.khulnasoft.com/api-reference/introduction)
+- [Spidery API Reference](https://docs-spidery.khulnasoft.com/api-reference/introduction)
 
 ## Frequently Asked Questions
 

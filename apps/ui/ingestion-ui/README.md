@@ -48,7 +48,7 @@ For production use, consider the following security measures:
 
 ## Learn More
 
-For more information about Spidery and its API, visit the [Spidery documentation](https://docs.spidery.khulnasoft.com/).
+For more information about Spidery and its API, visit the [Spidery documentation](https://docs-spidery.khulnasoft.com/).
 
 ## Contributing
 

@@ -19,7 +19,7 @@ genai.configure(api_key=google_api_key)
 model = genai.GenerativeModel("gemini-1.5-pro-001")
 
 # Set the docs URL
-docs_url = "https://docs.spidery.khulnasoft.com/api-reference"
+docs_url = "https://docs-spidery.khulnasoft.com/api-reference"
 
 # Initialize the SpideryApp with your API key
 app = SpideryApp(api_key=spidery_api_key)

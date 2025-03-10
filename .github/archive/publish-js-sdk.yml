@@ -16,7 +16,7 @@ jobs:
         with:
           node-version: '20'
           registry-url: 'https://registry.npmjs.org/'
-          scope: '@khulnasoft'
+          scope: '@mendable'
           always-auth: true
 
       - name: Install pnpm

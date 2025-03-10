@@ -24,7 +24,8 @@ use std::env;
 async fn test_successful_response_with_valid_preview_token() {
     dotenv().ok();
     let api_url = env::var("API_URL").unwrap();
-    let app = SpideryApp::new_selfhosted(api_url, Some("this_is_just_a_preview_token")).unwrap();
+    let app =
+        SpideryApp::new_selfhosted(api_url, Some(env::var("PREVIEW_TOKEN").unwrap())).unwrap();
     let result = app
         .scrape_url("https://roastmywebsite.ai", None)
         .await
@@ -160,7 +161,7 @@ fn test_api_key_requirements() {
     let api_url = env::var("API_URL").unwrap_or("http://localhost:3002".to_string());
     let api_key = env::var("TEST_API_KEY").ok();
 
-    match (api_url.contains("api.spidery.khulnasoft.com"), api_key) {
+    match (api_url.contains("api-spidery.khulnasoft.com"), api_key) {
         (false, _) => {
             let result = SpideryApp::new_selfhosted(&api_url, None::<String>);
             assert!(

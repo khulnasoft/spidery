@@ -6,11 +6,11 @@ import { describe, test, expect } from '@jest/globals';
 dotenv.config();
 
 const TEST_API_KEY = process.env.TEST_API_KEY;
-const API_URL = process.env.API_URL ?? "https://api.spidery.khulnasoft.com";
+const API_URL = process.env.API_URL ?? "https://api-spidery.khulnasoft.com";
 
 describe('SpideryApp E2E Tests', () => {
   test.concurrent('should throw error for no API key only for cloud service', async () => {
-    if (API_URL.includes('api.spidery.khulnasoft.com')) {
+    if (API_URL.includes('api-spidery.khulnasoft.com')) {
       // Should throw for cloud service
       expect(() => {
         new SpideryApp({ apiKey: null, apiUrl: API_URL });
@@ -24,7 +24,7 @@ describe('SpideryApp E2E Tests', () => {
   });
 
   test.concurrent('should throw error for invalid API key on scrape', async () => {
-    if (API_URL.includes('api.spidery.khulnasoft.com')) {
+    if (API_URL.includes('api-spidery.khulnasoft.com')) {
       const invalidApp = new SpideryApp({ apiKey: "invalid_api_key", apiUrl: API_URL });
       await expect(invalidApp.scrapeUrl('https://roastmywebsite.ai')).rejects.toThrow("Unexpected error occurred while trying to scrape URL. Status code: 404");
     } else {
@@ -40,7 +40,7 @@ describe('SpideryApp E2E Tests', () => {
   });
 
   test.concurrent('should return successful response with valid preview token', async () => {
-    const app = new SpideryApp({ apiKey: "this_is_just_a_preview_token", apiUrl: API_URL });
+    const app = new SpideryApp({ apiKey: process.env.PREVIEW_TOKEN, apiUrl: API_URL });
     const response = await app.scrapeUrl('https://roastmywebsite.ai');
     if (!response.success) {
       throw new Error(response.error);
@@ -168,7 +168,7 @@ describe('SpideryApp E2E Tests', () => {
   }, 30000); // 30 seconds timeout
 
   test.concurrent('should throw error for invalid API key on crawl', async () => {
-    if (API_URL.includes('api.spidery.khulnasoft.com')) {
+    if (API_URL.includes('api-spidery.khulnasoft.com')) {
       const invalidApp = new SpideryApp({ apiKey: "invalid_api_key", apiUrl: API_URL });
       await expect(invalidApp.crawlUrl('https://roastmywebsite.ai')).rejects.toThrow("Request failed with status code 404");
     } else {
@@ -349,7 +349,7 @@ describe('SpideryApp E2E Tests', () => {
   }, 60000); // 60 seconds timeout
 
   test.concurrent('should throw error for invalid API key on map', async () => {
-    if (API_URL.includes('api.spidery.khulnasoft.com')) {
+    if (API_URL.includes('api-spidery.khulnasoft.com')) {
       const invalidApp = new SpideryApp({ apiKey: "invalid_api_key", apiUrl: API_URL });
       await expect(invalidApp.mapUrl('https://roastmywebsite.ai')).rejects.toThrow("Request failed with status code 404");
     } else {
@@ -365,7 +365,7 @@ describe('SpideryApp E2E Tests', () => {
   });
 
   test.concurrent('should return successful response with valid preview token', async () => {
-    const app = new SpideryApp({ apiKey: "this_is_just_a_preview_token", apiUrl: API_URL });
+    const app = new SpideryApp({ apiKey: process.env.PREVIEW_TOKEN, apiUrl: API_URL });
     const response = await app.mapUrl('https://roastmywebsite.ai') as MapResponse;
     expect(response).not.toBeNull();
     expect(response.links?.length).toBeGreaterThan(0);

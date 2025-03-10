@@ -68,11 +68,11 @@ type SpideryDocumentMetadata struct {
 
 // SpideryDocument represents a document in Spidery
 type SpideryDocument struct {
-	Markdown   string                     `json:"markdown,omitempty"`
-	HTML       string                     `json:"html,omitempty"`
-	RawHTML    string                     `json:"rawHtml,omitempty"`
-	Screenshot string                     `json:"screenshot,omitempty"`
-	Links      []string                   `json:"links,omitempty"`
+	Markdown   string                   `json:"markdown,omitempty"`
+	HTML       string                   `json:"html,omitempty"`
+	RawHTML    string                   `json:"rawHtml,omitempty"`
+	Screenshot string                   `json:"screenshot,omitempty"`
+	Links      []string                 `json:"links,omitempty"`
 	Metadata   *SpideryDocumentMetadata `json:"metadata,omitempty"`
 }
 
@@ -90,7 +90,7 @@ type ScrapeParams struct {
 
 // ScrapeResponse represents the response for scraping operations
 type ScrapeResponse struct {
-	Success bool               `json:"success"`
+	Success bool             `json:"success"`
 	Data    *SpideryDocument `json:"data,omitempty"`
 }
 
@@ -116,12 +116,12 @@ type CrawlResponse struct {
 
 // CrawlStatusResponse (old JobStatusResponse) represents the response for checking crawl job
 type CrawlStatusResponse struct {
-	Status      string               `json:"status"`
-	Total       int                  `json:"total,omitempty"`
-	Completed   int                  `json:"completed,omitempty"`
-	CreditsUsed int                  `json:"creditsUsed,omitempty"`
-	ExpiresAt   string               `json:"expiresAt,omitempty"`
-	Next        *string              `json:"next,omitempty"`
+	Status      string             `json:"status"`
+	Total       int                `json:"total,omitempty"`
+	Completed   int                `json:"completed,omitempty"`
+	CreditsUsed int                `json:"creditsUsed,omitempty"`
+	ExpiresAt   string             `json:"expiresAt,omitempty"`
+	Next        *string            `json:"next,omitempty"`
 	Data        []*SpideryDocument `json:"data,omitempty"`
 }
 
@@ -210,7 +210,7 @@ type SpideryApp struct {
 //
 // Parameters:
 //   - apiKey: The API key for authenticating with the Spidery API. If empty, it will be retrieved from the SPIDERY_API_KEY environment variable.
-//   - apiURL: The base URL for the Spidery API. If empty, it will be retrieved from the SPIDERY_API_URL environment variable, defaulting to "https://api.spidery.khulnasoft.com".
+//   - apiURL: The base URL for the Spidery API. If empty, it will be retrieved from the SPIDERY_API_URL environment variable, defaulting to "https://api-spidery.khulnasoft.com".
 //
 // Returns:
 //   - *SpideryApp: A new instance of SpideryApp configured with the provided or retrieved API key and API URL.
@@ -226,7 +226,7 @@ func NewSpideryApp(apiKey, apiURL string) (*SpideryApp, error) {
 	if apiURL == "" {
 		apiURL = os.Getenv("SPIDERY_API_URL")
 		if apiURL == "" {
-			apiURL = "https://api.spidery.khulnasoft.com"
+			apiURL = "https://api-spidery.khulnasoft.com"
 		}
 	}
 
